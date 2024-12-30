@@ -1,0 +1,41 @@
+# Laravel specific files
+/vendor/
+/node_modules/
+.env
+
+# Ignore IDE files
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Ignore log files and temporary files
+storage/*.key
+storage/*.log
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# Ignore Composer and NPM debug files
+composer.phar
+npm-debug.log
+yarn-error.log
+
+# Ignore Laravel Mix or Vite files
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/vite.*
+/resources/**/*.css
+/resources/**/*.js
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore deployment artifacts
+Homestead.yaml
+Homestead.json
+.env.backup
