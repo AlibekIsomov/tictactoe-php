@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->integer('position'); // Validate range in your application logic
+            $table->integer('position');
             $table->timestamps();
         });
     }

@@ -1,20 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Replay Game #{{ $game->id }}</h1>
-        <p>Player 1: {{ $game->player1->name }}</p>
-        <p>Player 2: {{ $game->player2->name }}</p>
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-4">Replay Game #{{ $game->id }}</h1>
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
+            <div class="mb-4">
+                <p class="text-sm text-gray-600">Player 1: {{ $game->player1->name }}</p>
+                <p class="text-sm text-gray-600">Player 2: {{ $game->player2->name }}</p>
+            </div>
 
-        <div class="tictactoe-board">
-            @for ($i = 0; $i < 9; $i++)
-                <button type="button" class="btn btn-outline-primary" disabled>&nbsp;</button>
-            @endfor
-        </div>
+            <div class="tictactoe-board mb-4">
+                @for ($i = 0; $i < 9; $i++)
+                    <button type="button" class="tictactoe-cell" disabled>&nbsp;</button>
+                @endfor
+            </div>
 
-        <div class="mt-4">
-            <button id="prevMove" class="btn btn-secondary">Previous Move</button>
-            <button id="nextMove" class="btn btn-primary">Next Move</button>
+            <div class="mt-4 flex justify-center space-x-4">
+                <button id="prevMove" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+                    Previous Move
+                </button>
+                <button id="nextMove" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">
+                    Next Move
+                </button>
+            </div>
         </div>
     </div>
 @endsection
@@ -23,7 +31,7 @@
     <script>
         const moves = @json($moves);
         let currentMove = -1;
-        const board = document.querySelectorAll('.tictactoe-board button');
+        const board = document.querySelectorAll('.tictactoe-cell');
         const prevButton = document.getElementById('prevMove');
         const nextButton = document.getElementById('nextMove');
 
@@ -55,21 +63,5 @@
 
         updateBoard();
     </script>
-@endpush
-
-@push('styles')
-    <style>
-        .tictactoe-board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            width: 300px;
-            margin: 20px auto;
-        }
-        .tictactoe-board button {
-            height: 100px;
-            font-size: 2em;
-        }
-    </style>
 @endpush
 

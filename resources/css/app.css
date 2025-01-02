@@ -1,6 +1,12 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Add any custom styles here */
+.tictactoe-board {
+    @apply grid grid-cols-3 gap-2 w-64 mx-auto mt-4;
+}
+
+.tictactoe-cell {
+    @apply w-20 h-20 text-4xl font-bold flex items-center justify-center bg-gray-200 hover:bg-gray-300 cursor-pointer;
+}
 
