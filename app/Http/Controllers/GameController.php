@@ -48,8 +48,8 @@ class GameController extends Controller
         $request->validate(['position' => 'required|integer|min:0|max:8']);
 
         try {
-            $this->gameService->makeMove($game, auth()->user(), $request->position);
-            return redirect()->route('games.show', $game);
+            $updatedGame = $this->gameService->makeMove($game, auth()->user(), $request->position);
+            return redirect()->route('games.show', $updatedGame);
         } catch (\Exception $e) {
             return back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -61,4 +61,3 @@ class GameController extends Controller
         return view('games.replay', compact('game', 'moves'));
     }
 }
-

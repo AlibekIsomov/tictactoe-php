@@ -68,7 +68,7 @@
                         <form action="{{ route('games.move', $game) }}" method="POST" class="inline-block">
                             @csrf
                             <input type="hidden" name="position" value="{{ $i }}">
-                            <button type="submit" class="tictactoe-cell" {{ $game->board[$i] ? 'disabled' : '' }}>
+                            <button type="submit" class="tictactoe-cell w-20 h-20 text-4xl font-bold flex items-center justify-center bg-gray-200 hover:bg-gray-300 {{ $game->board[$i] ? 'cursor-not-allowed' : 'cursor-pointer' }}" {{ $game->board[$i] ? 'disabled' : '' }}>
                                 {{ $game->board[$i] ?? '' }}
                             </button>
                         </form>
@@ -95,4 +95,16 @@
         </div>
     </div>
 @endsection
+
+@push('styles')
+    <style>
+        .tictactoe-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 300px;
+            margin: 20px auto;
+        }
+    </style>
+@endpush
 

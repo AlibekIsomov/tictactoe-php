@@ -18,7 +18,7 @@ class GameService
         ]);
     }
 
-    public function joinGame(Game $game, User $player2): Game
+        public function joinGame(Game $game, User $player2): Game
     {
         if ($game->status !== 'waiting' || $game->player2_id !== null) {
             throw new \Exception('Game is not available to join.');
@@ -50,7 +50,9 @@ class GameService
             throw new \Exception('This position is already taken.');
         }
 
-        $game->board[$position] = $game->current_turn;
+        $board = $game->board;
+        $board[$position] = $game->current_turn;
+        $game->board = $board;
         $game->current_turn = $game->current_turn === 'X' ? 'O' : 'X';
         $game->save();
 
@@ -70,15 +72,15 @@ class GameService
             $game->update(['status' => 'finished']);
         }
 
-        return $game;
+        return $game->fresh();
     }
 
     private function checkWinner(array $board): ?string
     {
         $winningCombinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6]
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6] // Diagonals
         ];
 
         foreach ($winningCombinations as $combination) {

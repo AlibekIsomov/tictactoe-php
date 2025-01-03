@@ -41,4 +41,14 @@ class Game extends Model
     {
         return $this->hasMany(Move::class);
     }
+
+    public function getBoardAttribute($value)
+    {
+        return $value ? json_decode($value, true) : array_fill(0, 9, null);
+    }
+
+    public function setBoardAttribute($value)
+    {
+        $this->attributes['board'] = json_encode($value);
+    }
 }
