@@ -24,44 +24,61 @@
                 </button>
             </div>
         </div>
+
+        <div class="mt-8">
+            <p class="text-sm text-gray-500">
+                Share this game:
+                <a href="{{ route('games.show', $game) }}" class="text-indigo-600 hover:text-indigo-500">
+                    {{ route('games.show', $game) }}
+                </a>
+            </p>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
     <script>
-        const moves = @json($moves);
-        let currentMove = -1;
-        const board = document.querySelectorAll('.tictactoe-cell');
-        const prevButton = document.getElementById('prevMove');
-        const nextButton = document.getElementById('nextMove');
+        // Ensure the script runs after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const moves = @json($moves);
+            console.log('Moves:', moves); // Debug: Check if moves data is available
 
-        function updateBoard() {
-            for (let i = 0; i <= currentMove; i++) {
-                const move = moves[i];
-                board[move.position].textContent = i % 2 === 0 ? 'X' : 'O';
-            }
-            for (let i = currentMove + 1; i < 9; i++) {
-                board[i].textContent = '\u00A0';
-            }
-            prevButton.disabled = currentMove === -1;
-            nextButton.disabled = currentMove === moves.length - 1;
-        }
+            let currentMove = -1;
+            const board = document.querySelectorAll('.tictactoe-cell');
+            const prevButton = document.getElementById('prevMove');
+            const nextButton = document.getElementById('nextMove');
 
-        prevButton.addEventListener('click', () => {
-            if (currentMove > -1) {
-                currentMove--;
-                updateBoard();
+            function updateBoard() {
+                // Clear the board first
+                board.forEach(cell => {
+                    cell.textContent = '\u00A0';
+                });
+
+                // Update the board with moves
+                for (let i = 0; i <= currentMove; i++) {
+                    const move = moves[i];
+                    board[move.position].textContent = i % 2 === 0 ? 'X' : 'O';
+                }
+
+                prevButton.disabled = currentMove === -1;
+                nextButton.disabled = currentMove === moves.length - 1;
             }
+
+            prevButton.addEventListener('click', () => {
+                if (currentMove > -1) {
+                    currentMove--;
+                    updateBoard();
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentMove < moves.length - 1) {
+                    currentMove++;
+                    updateBoard();
+                }
+            });
+
+            updateBoard();
         });
-
-        nextButton.addEventListener('click', () => {
-            if (currentMove < moves.length - 1) {
-                currentMove++;
-                updateBoard();
-            }
-        });
-
-        updateBoard();
     </script>
 @endpush
-

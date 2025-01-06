@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/games/{game}/join', [GameController::class, 'join'])->name('games.join');
     Route::post('/games/{game}/move', [GameController::class, 'move'])->name('games.move');
     Route::get('/games/{game}/replay', [GameController::class, 'replay'])->name('games.replay');
+    Route::get('/games/invite/{token}', [GameController::class, 'invite'])->name('games.invite');
 });
 
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');

@@ -86,9 +86,9 @@
 
             <div class="mt-8">
                 <p class="text-sm text-gray-500">
-                    Share this game:
-                    <a href="{{ route('games.show', $game) }}" class="text-indigo-600 hover:text-indigo-500">
-                        {{ route('games.show', $game) }}
+                    Share this game(This link expires in 24 hours):
+                    <a href="{{ $inviteLink }}" class="text-indigo-600 hover:text-indigo-500">
+                        {{ $inviteLink }}
                     </a>
                 </p>
             </div>
