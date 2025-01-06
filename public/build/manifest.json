@@ -1,16 +1,18 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-06UrlxSq.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
+    "file": "assets/app-11249fc5.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-11249fc5.css",
+    "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-ArSgtGox.js",
-    "name": "app",
-    "src": "resources/js/app.js",
-    "isEntry": true,
     "css": [
-      "assets/app-06UrlxSq.css"
-    ]
+      "assets/app-11249fc5.css"
+    ],
+    "file": "assets/app-bd79d1a0.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
   }
 }
