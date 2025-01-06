@@ -1,84 +1,87 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe Replay</title>
+    <style>
+        .tictactoe-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .tictactoe-cell {
+            aspect-ratio: 1;
+            background: #f3f4f6;
+            border: 2px solid #d1d5db;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="tictactoe-board">
+    @for ($i = 0; $i < 9; $i++)
+        <div class="tictactoe-cell" data-position="{{ $i }}"></div>
+    @endfor
+</div>
 
-@section('content')
-    <div class="container mx-auto px-4">
-        <h1 class="text-3xl font-bold mb-4">Replay Game #{{ $game->id }}</h1>
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
-            <div class="mb-4">
-                <p class="text-sm text-gray-600">Player 1: {{ $game->player1->name }}</p>
-                <p class="text-sm text-gray-600">Player 2: {{ $game->player2->name }}</p>
-            </div>
+<button id="prevMove">Previous Move</button>
+<button id="nextMove">Next Move</button>
 
-            <div class="tictactoe-board mb-4">
-                @for ($i = 0; $i < 9; $i++)
-                    <button type="button" class="tictactoe-cell" disabled>&nbsp;</button>
-                @endfor
-            </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const moves = @json($moves);
+        let currentMove = -1;
+        const board = document.querySelectorAll('.tictactoe-cell');
+        const prevButton = document.getElementById('prevMove');
+        const nextButton = document.getElementById('nextMove');
 
-            <div class="mt-4 flex justify-center space-x-4">
-                <button id="prevMove" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
-                    Previous Move
-                </button>
-                <button id="nextMove" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">
-                    Next Move
-                </button>
-            </div>
-        </div>
+        function updateBoard() {
+            // Reset all cells
+            board.forEach(cell => {
+                cell.textContent = '';
+                cell.style.backgroundColor = '#f3f4f6';
+            });
 
-        <div class="mt-8">
-            <p class="text-sm text-gray-500">
-                Share this game:
-                <a href="{{ route('games.show', $game) }}" class="text-indigo-600 hover:text-indigo-500">
-                    {{ route('games.show', $game) }}
-                </a>
-            </p>
-        </div>
-    </div>
-@endsection
+            // Apply moves up to current position
+            for (let i = 0; i <= currentMove; i++) {
+                const move = moves[i];
+                const cell = board[move.position];
+                const symbol = move.user_id === {{ $game->player1_id }} ? 'X' : 'O';
+                cell.textContent = symbol;
 
-@push('scripts')
-    <script>
-        // Ensure the script runs after the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            const moves = @json($moves);
-            console.log('Moves:', moves); // Debug: Check if moves data is available
-
-            let currentMove = -1;
-            const board = document.querySelectorAll('.tictactoe-cell');
-            const prevButton = document.getElementById('prevMove');
-            const nextButton = document.getElementById('nextMove');
-
-            function updateBoard() {
-                // Clear the board first
-                board.forEach(cell => {
-                    cell.textContent = '\u00A0';
-                });
-
-                // Update the board with moves
-                for (let i = 0; i <= currentMove; i++) {
-                    const move = moves[i];
-                    board[move.position].textContent = i % 2 === 0 ? 'X' : 'O';
+                // Highlight the latest move
+                if (i === currentMove) {
+                    cell.style.backgroundColor = '#e5e7eb';
                 }
-
-                prevButton.disabled = currentMove === -1;
-                nextButton.disabled = currentMove === moves.length - 1;
             }
 
-            prevButton.addEventListener('click', () => {
-                if (currentMove > -1) {
-                    currentMove--;
-                    updateBoard();
-                }
-            });
+            // Update button states
+            prevButton.disabled = currentMove === -1;
+            nextButton.disabled = currentMove === moves.length - 1;
+        }
 
-            nextButton.addEventListener('click', () => {
-                if (currentMove < moves.length - 1) {
-                    currentMove++;
-                    updateBoard();
-                }
-            });
-
-            updateBoard();
+        prevButton.addEventListener('click', () => {
+            if (currentMove > -1) {
+                currentMove--;
+                updateBoard();
+            }
         });
-    </script>
-@endpush
+
+        nextButton.addEventListener('click', () => {
+            if (currentMove < moves.length - 1) {
+                currentMove++;
+                updateBoard();
+            }
+        });
+
+        // Initialize board
+        updateBoard();
+    });
+</script>
+</body>
+</html>

@@ -61,9 +61,11 @@ class GameController extends Controller
     {
         $moves = $game->moves()->orderBy('created_at')->get();
 
-        // Debugging to check the data being retrieved
+        // Debugging: Log the moves to the Laravel log
+        \Log::info('Moves for game ' . $game->id, ['moves' => $moves->toArray()]);
+
         if ($moves->isEmpty()) {
-            dd('No moves found for this game:', $game->id);
+            return back()->withErrors(['error' => 'No moves found for this game.']);
         }
 
         return view('games.replay', compact('game', 'moves'));
