@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0ce37fe-8752-436a-a284-966be4a65885" name="Changes" comment="Invite link added , replay debugging">
+    <list default="true" id="b0ce37fe-8752-436a-a284-966be4a65885" name="Changes" comment="need to change style but working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/games/replay.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/games/replay.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/games/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/games/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/games/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/games/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,26 +173,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DataGrid.QuickDoc.View": "TRANSPOSED",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DataGrid.QuickDoc.View&quot;: &quot;TRANSPOSED&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -214,7 +215,9 @@
       <workItem from="1735815811037" duration="6858000" />
       <workItem from="1735906042198" duration="670000" />
       <workItem from="1736137067366" duration="2245000" />
-      <workItem from="1736140218514" duration="7084000" />
+      <workItem from="1736140218514" duration="7385000" />
+      <workItem from="1736152032714" duration="3667000" />
+      <workItem from="1736157398481" duration="385000" />
     </task>
     <task id="LOCAL-00001" summary="Added models, controllers. Need to improve!">
       <option name="closed" value="true" />
@@ -248,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736144973628</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="need to change style but working">
+      <option name="closed" value="true" />
+      <created>1736147644296</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736147644296</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +270,7 @@
     <MESSAGE value="Something wrong with css" />
     <MESSAGE value="Game is working,need to work on replay" />
     <MESSAGE value="Invite link added , replay debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Invite link added , replay debugging" />
+    <MESSAGE value="need to change style but working" />
+    <option name="LAST_COMMIT_MESSAGE" value="need to change style but working" />
   </component>
 </project>

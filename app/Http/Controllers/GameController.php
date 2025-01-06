@@ -94,6 +94,14 @@ class GameController extends Controller
 
     public function show(Game $game)
     {
+
+        if (request()->ajax()) {
+            return response()->json([
+                'status' => $game->status,
+                'current_turn' => $game->current_turn,
+                'board' => $game->board, // Array of 9 cells (e.g., ['X', '', '', '', 'O', '', '', '', ''])
+            ]);
+        }
         // Generate expiration timestamp (24 hours from now)
         $expiration = now()->addHours(24)->timestamp;
 
